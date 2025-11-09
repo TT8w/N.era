@@ -1,0 +1,2427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="N.ERA - AI Assistive Technology for visually impaired and elderly populations in Hong Kong. Empowering access through intelligent technology.">
+  <title>N.ERA - AI Assistive Technology for All</title>
+  <style>
+    /* Design System Variables */
+    :root {
+      /* Primitive Color Tokens */
+      --color-white: rgba(255, 255, 255, 1);
+      --color-black: rgba(0, 0, 0, 1);
+      --color-cream-50: rgba(252, 252, 249, 1);
+      --color-cream-100: rgba(255, 255, 253, 1);
+      --color-gray-200: rgba(245, 245, 245, 1);
+      --color-gray-300: rgba(167, 169, 169, 1);
+      --color-gray-400: rgba(119, 124, 124, 1);
+      --color-slate-500: rgba(98, 108, 113, 1);
+      --color-brown-600: rgba(94, 82, 64, 1);
+      --color-charcoal-700: rgba(31, 33, 33, 1);
+      --color-charcoal-800: rgba(38, 40, 40, 1);
+      --color-slate-900: rgba(19, 52, 59, 1);
+      --color-teal-300: rgba(50, 184, 198, 1);
+      --color-teal-400: rgba(45, 166, 178, 1);
+      --color-teal-500: rgba(33, 128, 141, 1);
+      --color-teal-600: rgba(29, 116, 128, 1);
+      --color-teal-700: rgba(26, 104, 115, 1);
+      --color-teal-800: rgba(41, 150, 161, 1);
+      --color-red-400: rgba(255, 84, 89, 1);
+      --color-red-500: rgba(192, 21, 47, 1);
+      --color-orange-400: rgba(230, 129, 97, 1);
+      --color-orange-500: rgba(168, 75, 47, 1);
+
+      /* RGB versions for opacity control */
+      --color-brown-600-rgb: 94, 82, 64;
+      --color-teal-500-rgb: 33, 128, 141;
+      --color-slate-900-rgb: 19, 52, 59;
+      --color-slate-500-rgb: 98, 108, 113;
+      --color-red-500-rgb: 192, 21, 47;
+      --color-red-400-rgb: 255, 84, 89;
+      --color-orange-500-rgb: 168, 75, 47;
+      --color-orange-400-rgb: 230, 129, 97;
+
+      /* Semantic Color Tokens (Light Mode) */
+      --color-background: var(--color-cream-50);
+      --color-surface: var(--color-cream-100);
+      --color-text: var(--color-slate-900);
+      --color-text-secondary: var(--color-slate-500);
+      --color-primary: var(--color-teal-500);
+      --color-primary-hover: var(--color-teal-600);
+      --color-primary-active: var(--color-teal-700);
+      --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+      --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+      --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+      --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+      --color-btn-primary-text: var(--color-cream-50);
+      --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+      --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+      --color-error: var(--color-red-500);
+      --color-success: var(--color-teal-500);
+      --color-warning: var(--color-orange-500);
+      --color-info: var(--color-slate-500);
+      --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+      --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+
+      /* Typography */
+      --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-family-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --font-size-xs: 11px;
+      --font-size-sm: 12px;
+      --font-size-base: 14px;
+      --font-size-md: 14px;
+      --font-size-lg: 16px;
+      --font-size-xl: 18px;
+      --font-size-2xl: 20px;
+      --font-size-3xl: 24px;
+      --font-size-4xl: 30px;
+      --font-weight-normal: 400;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 550;
+      --font-weight-bold: 600;
+      --line-height-tight: 1.2;
+      --line-height-normal: 1.5;
+      --letter-spacing-tight: -0.01em;
+
+      /* Spacing */
+      --space-0: 0;
+      --space-1: 1px;
+      --space-2: 2px;
+      --space-4: 4px;
+      --space-6: 6px;
+      --space-8: 8px;
+      --space-10: 10px;
+      --space-12: 12px;
+      --space-16: 16px;
+      --space-20: 20px;
+      --space-24: 24px;
+      --space-32: 32px;
+
+      /* Border Radius */
+      --radius-sm: 6px;
+      --radius-base: 8px;
+      --radius-md: 10px;
+      --radius-lg: 12px;
+      --radius-full: 9999px;
+
+      /* Shadows */
+      --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+
+      /* Animation */
+      --duration-fast: 150ms;
+      --duration-normal: 250ms;
+      --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+
+      /* N.ERA Brand Colors */
+      --nera-primary: #1E3A8A;
+      --nera-secondary: #059669;
+      --nera-accent: #D97706;
+      --nera-text: #1F2937;
+      --nera-light-bg: #F9FAFB;
+    }
+
+    @font-face {
+      font-family: 'FKGroteskNeue';
+      src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2') format('woff2');
+    }
+
+    /* Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-family-base);
+      line-height: 1.6;
+      color: var(--nera-text);
+      background-color: var(--color-white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Skip to main content link */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--nera-primary);
+      color: var(--color-white);
+      padding: var(--space-8) var(--space-16);
+      text-decoration: none;
+      z-index: 100;
+      font-weight: var(--font-weight-bold);
+    }
+
+    .skip-link:focus {
+      top: 0;
+      outline: 3px solid var(--nera-accent);
+      outline-offset: 2px;
+    }
+
+    /* Header and Navigation */
+    .header {
+      background: var(--color-white);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: var(--space-16) var(--space-24);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--nera-primary);
+      text-decoration: none;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: var(--space-24);
+    }
+
+    .nav-link {
+      color: var(--nera-text);
+      text-decoration: none;
+      font-weight: var(--font-weight-medium);
+      padding: var(--space-8) var(--space-12);
+      transition: color var(--duration-fast) var(--ease-standard);
+      border-radius: var(--radius-base);
+    }
+
+    .nav-link:hover,
+    .nav-link:focus {
+      color: var(--nera-primary);
+      background: rgba(30, 58, 138, 0.05);
+    }
+
+    .nav-link:focus {
+      outline: 3px solid var(--nera-accent);
+      outline-offset: 2px;
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      background: transparent;
+      border: 2px solid var(--nera-primary);
+      color: var(--nera-primary);
+      padding: var(--space-8) var(--space-12);
+      font-size: var(--font-size-lg);
+      cursor: pointer;
+      border-radius: var(--radius-base);
+      min-width: 48px;
+      min-height: 48px;
+    }
+
+    .mobile-menu-toggle:focus {
+      outline: 3px solid var(--nera-accent);
+      outline-offset: 2px;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--nera-primary) 0%, var(--nera-secondary) 100%);
+      color: var(--color-white);
+      padding: 80px var(--space-24) 60px;
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-32);
+      align-items: center;
+    }
+
+    .hero-text {
+      text-align: center;
+    }
+
+    .hero-image-container {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--space-16);
+      line-height: var(--line-height-tight);
+    }
+
+    .hero-subheadline {
+      font-size: clamp(18px, 3vw, 24px);
+      margin-bottom: var(--space-32);
+      opacity: 0.95;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: var(--space-16);
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: var(--space-32);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 28px;
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      border-radius: var(--radius-base);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all var(--duration-normal) var(--ease-standard);
+      border: 2px solid transparent;
+      min-width: 140px;
+      min-height: 48px;
+    }
+
+    .btn:focus {
+      outline: 3px solid var(--nera-accent);
+      outline-offset: 2px;
+    }
+
+    .btn-primary {
+      background: var(--nera-accent);
+      color: var(--color-white);
+    }
+
+    .btn-primary:hover {
+      background: #B45309;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: var(--color-white);
+      color: var(--nera-primary);
+      border-color: var(--color-white);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.9);
+      transform: translateY(-2px);
+    }
+
+    .accessibility-statement {
+      font-size: var(--font-size-sm);
+      opacity: 0.9;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Section Styles */
+    .section {
+      padding: 60px var(--space-24);
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 36px);
+      font-weight: var(--font-weight-bold);
+      color: var(--nera-primary);
+      margin-bottom: var(--space-24);
+      text-align: center;
+    }
+
+    .section-description {
+      font-size: var(--font-size-xl);
+      color: var(--color-text-secondary);
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto var(--space-32);
+    }
+
+    /* Use Case Gallery */
+    .use-case-gallery {
+      margin: var(--space-32) 0;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .gallery-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: var(--color-white);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .gallery-slide {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s var(--ease-standard);
+    }
+
+    .gallery-slide.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .gallery-image {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-caption {
+      padding: var(--space-24);
+      text-align: center;
+      background: var(--color-white);
+    }
+
+    .gallery-caption h3 {
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--nera-primary);
+      margin-bottom: var(--space-8);
+    }
+
+    .gallery-caption p {
+      font-size: var(--font-size-lg);
+      color: var(--color-text-secondary);
+      margin: 0;
+    }
+
+    .gallery-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: var(--space-16);
+      margin-top: var(--space-24);
+    }
+
+    .gallery-btn {
+      background: var(--nera-primary);
+      color: var(--color-white);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-base);
+      cursor: pointer;
+      font-size: var(--font-size-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--duration-fast) var(--ease-standard);
+    }
+
+    .gallery-btn:hover {
+      background: var(--nera-secondary);
+      transform: scale(1.1);
+    }
+
+    .gallery-btn:focus {
+      outline: 3px solid var(--nera-accent);
+      outline-offset: 2px;
+    }
+
+    .gallery-indicators {
+      display: flex;
+      gap: var(--space-8);
+    }
+
+    .indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(30, 58, 138, 0.3);
+      border: none;
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-standard);
+      padding: 0;
+    }
+
+    .indicator.active {
+      background: var(--nera-primary);
+      width: 32px;
+      border-radius: var(--radius-full);
+    }
+
+    .indicator:hover {
+      background: var(--nera-secondary);
+    }
+
+    .indicator:focus {
+      outline: 2px solid var(--nera-accent);
+      outline-offset: 2px;
+    }
+
+    /* Problem Statement */
+    .problem-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-24);
+      margin-bottom: var(--space-32);
+    }
+
+    .stat-card {
+      background: var(--nera-light-bg);
+      padding: var(--space-24);
+      border-radius: var(--radius-lg);
+      border: 2px solid rgba(30, 58, 138, 0.1);
+      text-align: center;
+    }
+
+    .stat-card p {
+      font-size: var(--font-size-lg);
+      color: var(--nera-text);
+      line-height: 1.6;
+    }
+
+    /* Features Section */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-24);
+    }
+
+    .feature-card {
+      background: var(--color-white);
+      border: 2px solid var(--color-card-border);
+      border-radius: var(--radius-lg);
+      transition: all var(--duration-normal) var(--ease-standard);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .feature-image-container {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+
+    .feature-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--duration-normal) var(--ease-standard);
+    }
+
+    .feature-card:hover .feature-image {
+      transform: scale(1.05);
+    }
+
+    .feature-content {
+      padding: var(--space-24);
+      flex: 1;
+    }
+
+    .feature-card:hover,
+    .feature-card:focus-within {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--nera-primary);
+    }
+
+    .feature-card:focus-within {
+      outline: 3px solid var(--nera-accent);
+      outline-offset: 2px;
+    }
+
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--nera-primary), var(--nera-secondary));
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-16);
+      font-size: 28px;
+    }
+
+    .feature-title {
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--nera-primary);
+      margin-bottom: var(--space-12);
+    }
+
+    .feature-description {
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-16);
+      line-height: 1.6;
+    }
+
+    .feature-expand {
+      background: none;
+      border: none;
+      color: var(--nera-secondary);
+      font-weight: var(--font-weight-semibold);
+      cursor: pointer;
+      padding: var(--space-8) 0;
+      font-size: var(--font-size-base);
+      text-decoration: underline;
+    }
+
+    .feature-expand:focus {
+      outline: 3px solid var(--nera-accent);
+      outline-offset: 2px;
+      border-radius: var(--radius-sm);
+    }
+
+    .feature-details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--duration-normal) var(--ease-standard);
+    }
+
+    .feature-details.expanded {
+      max-height: 200px;
+      margin-top: var(--space-12);
+    }
+
+    /* Product Showcase Section */
+    .product-showcase {
+      background: var(--nera-light-bg);
+    }
+
+    .product-hero {
+      max-width: 1000px;
+      margin: 0 auto var(--space-32);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .product-hero-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .product-details-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-24);
+      margin-bottom: var(--space-32);
+    }
+
+    .product-detail-card {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: all var(--duration-normal) var(--ease-standard);
+      border: 2px solid var(--color-card-border);
+    }
+
+    .product-detail-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--nera-primary);
+    }
+
+    .product-detail-image {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .product-detail-title {
+      padding: var(--space-16) var(--space-20);
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--nera-primary);
+      text-align: center;
+      margin: 0;
+    }
+
+    .product-specs {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      padding: var(--space-32);
+      border: 2px solid var(--color-card-border);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .specs-title {
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--nera-primary);
+      margin-bottom: var(--space-20);
+      text-align: center;
+    }
+
+    .specs-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .specs-list li {
+      padding: var(--space-12) 0;
+      padding-left: var(--space-32);
+      position: relative;
+      font-size: var(--font-size-lg);
+      color: var(--nera-text);
+      line-height: 1.6;
+      border-bottom: 1px solid rgba(30, 58, 138, 0.1);
+    }
+
+    .specs-list li:last-child {
+      border-bottom: none;
+    }
+
+    .specs-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--nera-secondary);
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-xl);
+    }
+
+    /* Metrics Section */
+    .metrics-section {
+      background: linear-gradient(135deg, var(--nera-primary) 0%, var(--nera-secondary) 100%);
+      color: var(--color-white);
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--space-32);
+    }
+
+    .metric-card {
+      text-align: center;
+    }
+
+    .metric-number {
+      font-size: clamp(40px, 6vw, 56px);
+      font-weight: var(--font-weight-bold);
+      color: var(--nera-accent);
+      margin-bottom: var(--space-8);
+      display: block;
+    }
+
+    .metric-label {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-8);
+    }
+
+    .metric-description {
+      font-size: var(--font-size-base);
+      opacity: 0.9;
+    }
+
+    /* Pricing Section */
+    .pricing-section {
+      background: var(--nera-light-bg);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-32);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .pricing-card {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      padding: var(--space-32);
+      border: 3px solid var(--color-card-border);
+      transition: all var(--duration-normal) var(--ease-standard);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pricing-card.popular {
+      border-color: var(--nera-secondary);
+      box-shadow: 0 8px 24px rgba(5, 150, 105, 0.15);
+    }
+
+    @media (min-width: 769px) {
+      .pricing-card.popular {
+        transform: scale(1.05);
+      }
+    }
+
+    .pricing-card.privacy-focused {
+      border-color: var(--nera-primary);
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--nera-secondary);
+      color: var(--color-white);
+      padding: var(--space-6) var(--space-16);
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-bold);
+    }
+
+    .pricing-badge.privacy {
+      background: var(--nera-primary);
+    }
+
+    .pricing-name {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--nera-primary);
+      margin-bottom: var(--space-12);
+      text-align: center;
+    }
+
+    .pricing-price {
+      font-size: var(--font-size-4xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--nera-text);
+      text-align: center;
+      margin-bottom: var(--space-8);
+    }
+
+    .pricing-price .currency {
+      font-size: var(--font-size-xl);
+    }
+
+    .pricing-price .period {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-normal);
+      color: var(--color-text-secondary);
+    }
+
+    .pricing-description {
+      text-align: center;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-24);
+      font-size: var(--font-size-base);
+    }
+
+    .pricing-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 var(--space-24) 0;
+      flex: 1;
+    }
+
+    .pricing-features li {
+      padding: var(--space-12) 0 var(--space-12) var(--space-32);
+      position: relative;
+      font-size: var(--font-size-base);
+      color: var(--nera-text);
+      line-height: 1.6;
+      border-bottom: 1px solid rgba(30, 58, 138, 0.08);
+    }
+
+    .pricing-features li:last-child {
+      border-bottom: none;
+    }
+
+    .pricing-features li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--nera-secondary);
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-lg);
+    }
+
+    .pricing-cta {
+      width: 100%;
+      padding: 16px;
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-bold);
+      border-radius: var(--radius-base);
+      border: none;
+      cursor: pointer;
+      transition: all var(--duration-normal) var(--ease-standard);
+      text-align: center;
+      text-decoration: none;
+      display: block;
+    }
+
+    .pricing-cta.green {
+      background: var(--nera-secondary);
+      color: var(--color-white);
+    }
+
+    .pricing-cta.green:hover {
+      background: #047857;
+      transform: translateY(-2px);
+    }
+
+    .pricing-cta.blue {
+      background: var(--nera-primary);
+      color: var(--color-white);
+    }
+
+    .pricing-cta.blue:hover {
+      background: #1e3a8a;
+      transform: translateY(-2px);
+    }
+
+    .pricing-trial {
+      text-align: center;
+      margin-top: var(--space-24);
+      font-size: var(--font-size-base);
+      color: var(--color-text-secondary);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    /* Grant Program Section */
+    .grant-section {
+      background: var(--color-white);
+    }
+
+    .grant-content {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--nera-light-bg);
+      padding: var(--space-32);
+      border-radius: var(--radius-lg);
+      border: 2px solid rgba(5, 150, 105, 0.2);
+    }
+
+    .grant-subtitle {
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--nera-secondary);
+      margin-bottom: var(--space-16);
+      text-align: center;
+    }
+
+    .grant-description {
+      font-size: var(--font-size-lg);
+      color: var(--nera-text);
+      margin-bottom: var(--space-24);
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .grant-eligibility {
+      background: var(--color-white);
+      padding: var(--space-24);
+      border-radius: var(--radius-base);
+      margin-bottom: var(--space-24);
+    }
+
+    .grant-eligibility h4 {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--nera-primary);
+      margin-bottom: var(--space-16);
+    }
+
+    .grant-eligibility ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .grant-eligibility li {
+      padding: var(--space-8) 0 var(--space-8) var(--space-32);
+      position: relative;
+      font-size: var(--font-size-base);
+      color: var(--nera-text);
+    }
+
+    .grant-eligibility li::before {
+      content: "•";
+      position: absolute;
+      left: var(--space-12);
+      color: var(--nera-secondary);
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-xl);
+    }
+
+    .grant-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-16);
+      margin-top: var(--space-24);
+    }
+
+    .grant-stat {
+      background: var(--color-white);
+      padding: var(--space-20);
+      border-radius: var(--radius-base);
+      text-align: center;
+    }
+
+    .grant-stat-number {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--nera-secondary);
+      display: block;
+      margin-bottom: var(--space-8);
+    }
+
+    .grant-stat-label {
+      font-size: var(--font-size-base);
+      color: var(--color-text-secondary);
+    }
+
+    /* Donation Section */
+    .donation-section {
+      background: linear-gradient(135deg, var(--nera-primary) 0%, var(--nera-secondary) 100%);
+      color: var(--color-white);
+    }
+
+    .donation-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .donation-description {
+      font-size: var(--font-size-xl);
+      text-align: center;
+      margin-bottom: var(--space-32);
+      opacity: 0.95;
+    }
+
+    .donation-tiers {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--space-20);
+      margin-bottom: var(--space-32);
+    }
+
+    .donation-tier {
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--nera-text);
+      padding: var(--space-24);
+      border-radius: var(--radius-lg);
+      text-align: center;
+      transition: all var(--duration-normal) var(--ease-standard);
+      cursor: pointer;
+      border: 3px solid transparent;
+    }
+
+    .donation-tier:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--nera-accent);
+    }
+
+    .donation-amount {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--nera-primary);
+      margin-bottom: var(--space-12);
+    }
+
+    .donation-impact {
+      font-size: var(--font-size-base);
+      color: var(--nera-text);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-8);
+    }
+
+    .donation-description-text {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+    }
+
+    .donation-cta-container {
+      text-align: center;
+    }
+
+    .donation-counter {
+      background: rgba(255, 255, 255, 0.15);
+      padding: var(--space-24);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-32);
+      text-align: center;
+    }
+
+    .donation-counter-stats {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-32);
+      flex-wrap: wrap;
+    }
+
+    .donation-counter-item {
+      text-align: center;
+    }
+
+    .donation-counter-number {
+      font-size: var(--font-size-4xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--nera-accent);
+      display: block;
+    }
+
+    .donation-counter-label {
+      font-size: var(--font-size-base);
+      opacity: 0.9;
+    }
+
+    /* Comparison Table */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: var(--space-32) 0;
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: var(--space-16);
+      text-align: left;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .comparison-table th {
+      background: var(--nera-primary);
+      color: var(--color-white);
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-lg);
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comparison-table td:first-child {
+      font-weight: var(--font-weight-semibold);
+      color: var(--nera-text);
+    }
+
+    .comparison-table .check {
+      color: var(--nera-secondary);
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+    }
+
+    .comparison-table .cross {
+      color: var(--color-text-secondary);
+      font-size: var(--font-size-xl);
+    }
+
+    /* Team Section */
+    .team-member-email {
+      font-size: var(--font-size-sm);
+      margin-top: var(--space-12);
+    }
+
+    .team-member-email a {
+      color: var(--nera-secondary);
+      text-decoration: none;
+      font-weight: var(--font-weight-medium);
+    }
+
+    .team-member-email a:hover {
+      text-decoration: underline;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-24);
+    }
+
+    .team-card {
+      background: var(--nera-light-bg);
+      border-radius: var(--radius-lg);
+      padding: var(--space-24);
+      text-align: left;
+      border: 2px solid rgba(30, 58, 138, 0.1);
+      transition: all var(--duration-normal) var(--ease-standard);
+    }
+
+    .team-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--nera-primary);
+    }
+
+    .team-member-name {
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--nera-primary);
+      margin-bottom: var(--space-8);
+    }
+
+    .team-member-role {
+      font-size: var(--font-size-lg);
+      color: var(--nera-secondary);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-12);
+    }
+
+    .team-member-bio {
+      color: var(--color-text-secondary);
+      font-size: var(--font-size-base);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: var(--nera-light-bg);
+      text-align: center;
+    }
+
+    .cta-form {
+      max-width: 500px;
+      margin: var(--space-32) auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-16);
+    }
+
+    .form-group {
+      text-align: left;
+    }
+
+    .form-label {
+      display: block;
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-8);
+      color: var(--nera-text);
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: var(--font-size-lg);
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-base);
+      font-family: var(--font-family-base);
+      min-height: 48px;
+    }
+
+    .form-input:focus {
+      outline: 3px solid var(--nera-accent);
+      outline-offset: 2px;
+      border-color: var(--nera-primary);
+    }
+
+    .error-message {
+      color: var(--color-error);
+      font-size: var(--font-size-sm);
+      margin-top: var(--space-4);
+      display: none;
+    }
+
+    .error-message.visible {
+      display: block;
+    }
+
+    .success-message {
+      background: rgba(5, 150, 105, 0.1);
+      color: var(--nera-secondary);
+      padding: var(--space-16);
+      border-radius: var(--radius-base);
+      border: 2px solid var(--nera-secondary);
+      font-weight: var(--font-weight-semibold);
+      display: none;
+    }
+
+    .success-message.visible {
+      display: block;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--nera-text);
+      color: var(--color-white);
+      padding: 40px var(--space-24);
+    }
+
+    .footer-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-32);
+    }
+
+    .footer-section h3 {
+      color: var(--nera-accent);
+      margin-bottom: var(--space-16);
+      font-size: var(--font-size-xl);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: var(--space-8);
+    }
+
+    .footer-link {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: color var(--duration-fast) var(--ease-standard);
+    }
+
+    .footer-link:hover,
+    .footer-link:focus {
+      color: var(--nera-accent);
+    }
+
+    .footer-link:focus {
+      outline: 3px solid var(--nera-accent);
+      outline-offset: 2px;
+      border-radius: var(--radius-sm);
+    }
+
+    .footer-bottom {
+      max-width: 1280px;
+      margin: var(--space-32) auto 0;
+      padding-top: var(--space-24);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Responsive Design */
+    @media (min-width: 768px) {
+      .hero-content {
+        grid-template-columns: 1fr 1fr;
+        text-align: left;
+      }
+
+      .hero-text {
+        text-align: left;
+      }
+
+      .hero-cta {
+        justify-content: flex-start;
+      }
+
+      .gallery-image {
+        height: 500px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .gallery-image {
+        height: 600px;
+      }
+    }
+
+    /* Ensure all sections are visible */
+    section {
+      position: relative;
+      overflow: visible;
+    }
+
+    /* Make sure pricing cards don't get cut off */
+    .pricing-grid {
+      overflow: visible;
+    }
+
+    .pricing-card {
+      overflow: visible;
+    }
+
+    /* Ensure team cards show all content */
+    .team-card {
+      min-height: auto;
+      overflow: visible;
+    }
+
+    /* Ensure donation tiers are fully visible */
+    .donation-tiers {
+      overflow: visible;
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--color-white);
+        box-shadow: var(--shadow-lg);
+        padding: var(--space-16);
+        gap: var(--space-8);
+      }
+
+      .nav-menu.active {
+        display: flex;
+      }
+
+      .mobile-menu-toggle {
+        display: block;
+      }
+
+      .hero {
+        padding: 60px var(--space-16) 40px;
+      }
+
+      .section {
+        padding: 40px var(--space-16);
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .pricing-card.popular {
+        transform: scale(1);
+      }
+
+      .comparison-table {
+        font-size: var(--font-size-sm);
+      }
+
+      .comparison-table th,
+      .comparison-table td {
+        padding: var(--space-12);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .section {
+        padding: 80px var(--space-32);
+      }
+    }
+
+    /* Animation utilities */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s var(--ease-standard), transform 0.6s var(--ease-standard);
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Screen reader only */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Skip to main content link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header -->
+  <header class="header" role="banner">
+    <nav class="nav-container" role="navigation" aria-label="Main navigation">
+      <a href="#" class="logo" aria-label="N.ERA - Home">N.ERA</a>
+      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+        ☰
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#problem" class="nav-link">Challenge</a></li>
+        <li><a href="#solution" class="nav-link">Solution</a></li>
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#hardware" class="nav-link">Device</a></li>
+        <li><a href="#pricing" class="nav-link">Pricing</a></li>
+        <li><a href="#grant" class="nav-link">Grant Program</a></li>
+        <li><a href="#donation" class="nav-link">Donate</a></li>
+        <li><a href="#team" class="nav-link">Team</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 id="hero-title">N.ERA - Building Accessible Hong Kong Together</h1>
+          <p class="hero-subheadline">AI-powered 360° mapping and real-time navigation for visually impaired and elderly communities</p>
+          <div class="hero-cta">
+            <a href="#pricing" class="btn btn-primary" aria-label="View N.ERA subscription plans">View Plans</a>
+            <a href="#donation" class="btn btn-secondary" aria-label="Support N.ERA mission">Support Our Mission</a>
+          </div>
+          <p class="accessibility-statement">
+            <strong>Accessibility Commitment:</strong> This website is designed to meet WCAG 2.1 AA standards. 
+            We are committed to making our digital services accessible to everyone, including people with disabilities.
+          </p>
+        </div>
+        <div class="hero-image-container">
+          <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/5f6204d5-30cc-4a3c-8cf3-76d1aafa45f7.png" 
+               alt="Person with guide dog using N.ERA device for navigation on Hong Kong street" 
+               class="hero-image">
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem Statement Section -->
+    <section id="problem" class="section fade-in" aria-labelledby="problem-title">
+      <h2 id="problem-title" class="section-title">The Challenge in Hong Kong</h2>
+      <p class="section-description">
+        Visually impaired residents in Hong Kong often face unsafe navigation, limited real-time support, and social isolation. Meanwhile, elderly people struggle with reliable, up-to-date route information for daily activities.
+      </p>
+      
+      <!-- Use Case Gallery -->
+      <div class="use-case-gallery">
+        <div class="gallery-container">
+          <div class="gallery-slide active">
+            <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/5f6204d5-30cc-4a3c-8cf3-76d1aafa45f7.png" 
+                 alt="Person with guide dog using N.ERA for independent navigation on city streets" 
+                 class="gallery-image">
+            <div class="gallery-caption">
+              <h3>Independent Navigation</h3>
+              <p>Navigate streets confidently with AI guidance</p>
+            </div>
+          </div>
+          <div class="gallery-slide">
+            <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/1716cdc7-ef51-44be-8a06-07054b6ab7b3.png" 
+                 alt="Elderly person at home using N.ERA accessibility features" 
+                 class="gallery-image">
+            <div class="gallery-caption">
+              <h3>At-Home Accessibility</h3>
+              <p>Elderly-friendly interface for daily living</p>
+            </div>
+          </div>
+          <div class="gallery-slide">
+            <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/d5cea955-39ea-410c-aef8-d22a513f8fa5.png" 
+                 alt="Person using N.ERA device at MTR station for public transit navigation" 
+                 class="gallery-image">
+            <div class="gallery-caption">
+              <h3>Public Transit Made Easy</h3>
+              <p>Navigate MTR and buses independently</p>
+            </div>
+          </div>
+          <div class="gallery-slide">
+            <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/939aad12-421b-4bdd-87f6-c62ba40cfdbb.png" 
+                 alt="Person using N.ERA to navigate shopping environment independently" 
+                 class="gallery-image">
+            <div class="gallery-caption">
+              <h3>Shopping Independence</h3>
+              <p>Explore retail environments confidently</p>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-controls">
+          <button class="gallery-btn prev-btn" aria-label="Previous use case">&lt;</button>
+          <div class="gallery-indicators" role="tablist" aria-label="Use case gallery">
+            <button class="indicator active" aria-label="Use case 1" aria-selected="true" role="tab"></button>
+            <button class="indicator" aria-label="Use case 2" aria-selected="false" role="tab"></button>
+            <button class="indicator" aria-label="Use case 3" aria-selected="false" role="tab"></button>
+            <button class="indicator" aria-label="Use case 4" aria-selected="false" role="tab"></button>
+          </div>
+          <button class="gallery-btn next-btn" aria-label="Next use case">&gt;</button>
+        </div>
+      </div>
+
+      <div class="problem-stats">
+        <div class="stat-card">
+          <p><strong>199,600 visually impaired individuals</strong> lack adequate digital support</p>
+        </div>
+        <div class="stat-card">
+          <p><strong>Elderly population struggles</strong> with complex technology interfaces</p>
+        </div>
+        <div class="stat-card">
+          <p><strong>Limited access</strong> to barrier-free route information</p>
+        </div>
+        <div class="stat-card">
+          <p><strong>Social isolation</strong> due to navigation anxiety</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution" class="section fade-in" aria-labelledby="solution-title" style="background: var(--color-white);">
+      <h2 id="solution-title" class="section-title">How N.ERA Works: 360° Environmental Mapping</h2>
+      <p class="section-description">
+        Our AI-driven guide dog harness uses advanced sensors to create real-time, accessible indoor and outdoor maps of Hong Kong.
+      </p>
+
+      <div class="product-details-grid" style="margin-bottom: var(--space-32);">
+        <div class="product-detail-card">
+          <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/8f317761-3710-4f18-bad9-b6b5d874c00a.png" 
+               alt="360 degree camera technology for complete environmental awareness" 
+               class="product-detail-image">
+          <h3 class="product-detail-title">360° Camera Technology</h3>
+        </div>
+        <div class="product-detail-card">
+          <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/c7cf69f9-5b96-45f1-818f-f5b82c94a94a.png" 
+               alt="Data flow diagram showing sensor to AI processing to user guidance" 
+               class="product-detail-image">
+          <h3 class="product-detail-title">Real-Time Data Flow</h3>
+        </div>
+        <div class="product-detail-card">
+          <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/d5454a1b-0c04-4165-9c04-ec068e12586a.png" 
+               alt="Accessible map interface showing safe routes and obstacles" 
+               class="product-detail-image">
+          <h3 class="product-detail-title">Accessible Map Creation</h3>
+        </div>
+        <div class="product-detail-card">
+          <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/c1e555f7-bdbe-4851-9874-e27caa613a7e.png" 
+               alt="Mobile app interface with voice guidance and navigation controls" 
+               class="product-detail-image">
+          <h3 class="product-detail-title">Mobile App Interface</h3>
+        </div>
+      </div>
+
+      <div class="product-specs" style="max-width: 900px;">
+        <h3 class="specs-title">Technology Workflow</h3>
+        <ul class="specs-list">
+          <li>360° camera technology for complete environmental awareness</li>
+          <li>Multiple sensors (GPS, obstacle detection, environmental scanning)</li>
+          <li>Real-time AI processing for navigation assistance</li>
+          <li>Anonymized data aggregation to build community knowledge</li>
+          <li>Safe route maps continuously updated by community</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section fade-in" aria-labelledby="features-title" style="background: var(--nera-light-bg);">
+      <h2 id="features-title" class="section-title">Key Features</h2>
+      <p class="section-description">
+        Comprehensive accessibility features designed for visually impaired and elderly users
+      </p>
+      <div class="features-grid">
+        <article class="feature-card" tabindex="0" aria-labelledby="feature-1-title">
+          <div class="feature-image-container">
+            <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/d5cea955-39ea-410c-aef8-d22a513f8fa5.png" 
+                 alt="Person using N.ERA for public transit navigation" 
+                 class="feature-image">
+          </div>
+          <div class="feature-content">
+            <div class="feature-icon" aria-hidden="true">🧭</div>
+            <h3 id="feature-1-title" class="feature-title">AI-Powered Navigation</h3>
+            <p class="feature-description">
+              Intelligent voice guidance and predictive navigation for seamless web browsing and app interaction
+            </p>
+            <button class="feature-expand" aria-expanded="false" aria-controls="feature-1-details">Learn more</button>
+            <div id="feature-1-details" class="feature-details" role="region" aria-label="Additional details about AI-Powered Navigation">
+              <p>Our AI system learns user preferences and adapts navigation patterns for optimal efficiency.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="feature-card" tabindex="0" aria-labelledby="feature-2-title">
+          <div class="feature-image-container">
+            <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/3dd049d3-3cd8-4377-994b-1b3820206872.png" 
+                 alt="Close-up of N.ERA device showing tactile controls and voice interface" 
+                 class="feature-image">
+          </div>
+          <div class="feature-content">
+            <div class="feature-icon" aria-hidden="true">🎤</div>
+            <h3 id="feature-2-title" class="feature-title">Voice-Guided Interfaces</h3>
+            <p class="feature-description">
+              Natural language processing for hands-free operation with contextual audio feedback
+            </p>
+            <button class="feature-expand" aria-expanded="false" aria-controls="feature-2-details">Learn more</button>
+            <div id="feature-2-details" class="feature-details" role="region" aria-label="Additional details about Voice-Guided Interfaces">
+              <p>Supports Cantonese, English, and Mandarin with context-aware responses.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="feature-card" tabindex="0" aria-labelledby="feature-3-title">
+          <div class="feature-image-container">
+            <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/1716cdc7-ef51-44be-8a06-07054b6ab7b3.png" 
+                 alt="Elderly person at home comfortably using N.ERA accessibility features" 
+                 class="feature-image">
+          </div>
+          <div class="feature-content">
+            <div class="feature-icon" aria-hidden="true">👥</div>
+            <h3 id="feature-3-title" class="feature-title">Elderly-Friendly Design</h3>
+            <p class="feature-description">
+              Simplified interfaces with large text, high contrast, and minimal cognitive load
+            </p>
+            <button class="feature-expand" aria-expanded="false" aria-controls="feature-3-details">Learn more</button>
+            <div id="feature-3-details" class="feature-details" role="region" aria-label="Additional details about Elderly-Friendly Design">
+              <p>Designed with input from senior citizens and accessibility experts in Hong Kong.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="feature-card" tabindex="0" aria-labelledby="feature-4-title">
+          <div class="feature-image-container">
+            <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/46722679-9748-4059-8dd2-ae785e0cad3b.png" 
+                 alt="Detailed view of N.ERA device components and AI processor" 
+                 class="feature-image">
+          </div>
+          <div class="feature-content">
+            <div class="feature-icon" aria-hidden="true">🎧</div>
+            <h3 id="feature-4-title" class="feature-title">Real-Time Support</h3>
+            <p class="feature-description">
+              AI-powered accessibility assistant providing instant help when users encounter barriers
+            </p>
+            <button class="feature-expand" aria-expanded="false" aria-controls="feature-4-details">Learn more</button>
+            <div id="feature-4-details" class="feature-details" role="region" aria-label="Additional details about Real-Time Support">
+              <p>24/7 availability with multilingual support and proactive assistance suggestions.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Product Showcase Section -->
+    <section id="product" class="section product-showcase fade-in" aria-labelledby="product-title">
+      <h2 id="product-title" class="section-title">N.ERA Product Features</h2>
+      <p class="section-description">
+        Advanced wearable technology designed for accessibility
+      </p>
+      
+      <div class="product-hero">
+        <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/5f6204d5-30cc-4a3c-8cf3-76d1aafa45f7.png" 
+             alt="N.ERA wearable device in real-world use" 
+             class="product-hero-image">
+      </div>
+
+      <div class="product-details-grid">
+        <div class="product-detail-card">
+          <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/3dd049d3-3cd8-4377-994b-1b3820206872.png" 
+               alt="Close-up view of N.ERA tactile controls and user interface" 
+               class="product-detail-image">
+          <h3 class="product-detail-title">Tactile Controls &amp; Interface</h3>
+        </div>
+        <div class="product-detail-card">
+          <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/46722679-9748-4059-8dd2-ae785e0cad3b.png" 
+               alt="Internal view of N.ERA AI processor and sensor components" 
+               class="product-detail-image">
+          <h3 class="product-detail-title">AI Processor &amp; Sensors</h3>
+        </div>
+        <div class="product-detail-card">
+          <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/5f6204d5-30cc-4a3c-8cf3-76d1aafa45f7.png" 
+               alt="N.ERA comfortable wearable design in action" 
+               class="product-detail-image">
+          <h3 class="product-detail-title">Wearable Design</h3>
+        </div>
+      </div>
+
+      <div class="product-specs">
+        <h3 class="specs-title">Technical Specifications</h3>
+        <ul class="specs-list">
+          <li>Advanced voice recognition with Cantonese support</li>
+          <li>Real-time environmental audio processing</li>
+          <li>14-hour battery life</li>
+          <li>Waterproof IP67 rating for daily use</li>
+          <li>Lightweight and comfortable wearable design</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Hardware Pricing Section -->
+    <section id="hardware" class="section fade-in" aria-labelledby="hardware-title" style="background: var(--color-white);">
+      <h2 id="hardware-title" class="section-title">N.ERA Wearable Device</h2>
+      <p class="section-description">
+        One-time purchase includes 1 month free subscription
+      </p>
+      
+      <div class="grant-content" style="max-width: 700px;">
+        <div class="pricing-price" style="margin-bottom: var(--space-24);">
+          <span class="currency">HKD</span> 1,980
+        </div>
+        <p class="pricing-description" style="font-size: var(--font-size-lg); margin-bottom: var(--space-24);">
+          One-time purchase • Includes 1 month free subscription
+        </p>
+        
+        <div class="product-specs" style="margin-top: var(--space-24);">
+          <h3 class="specs-title">What's Included</h3>
+          <ul class="specs-list">
+            <li>360° panoramic camera with AI processing</li>
+            <li>Advanced GPS and obstacle detection sensors</li>
+            <li>Real-time environmental data collection</li>
+            <li>14-hour rechargeable battery life</li>
+            <li>IP67 waterproof rating for daily use</li>
+            <li>Lightweight wearable harness design</li>
+            <li>Wireless connectivity (Bluetooth 5.0 + 4G)</li>
+          </ul>
+          <p style="text-align: center; margin-top: var(--space-24); color: var(--color-text-secondary); font-size: var(--font-size-base);">
+            <strong>Note:</strong> Device works with both Community Builder and Premium Privacy subscription plans
+          </p>
+        </div>
+
+        <div style="text-align: center; margin-top: var(--space-32);">
+          <a href="#pricing" class="btn btn-primary" style="display: inline-flex; font-size: var(--font-size-xl);">View Subscription Plans</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Subscription Pricing Section -->
+    <section id="pricing" class="section pricing-section fade-in" aria-labelledby="pricing-title">
+      <h2 id="pricing-title" class="section-title">Choose Your Plan</h2>
+      <p class="section-description">
+        Two subscription options designed to meet your needs
+      </p>
+      
+      <div class="pricing-grid">
+        <!-- Community Builder Plan -->
+        <article class="pricing-card popular">
+          <span class="pricing-badge">Most Popular</span>
+          <h3 class="pricing-name">Community Builder</h3>
+          <div class="pricing-price">
+            <span class="currency">HKD</span> 599<span class="period">/month</span>
+          </div>
+          <p class="pricing-description">Help build barrier-free Hong Kong while getting full navigation support</p>
+          
+          <ul class="pricing-features">
+            <li>Access to N.ERA device and app</li>
+            <li>AI-powered navigation assistance</li>
+            <li>Real-time alerts and voice guidance</li>
+            <li>Community-driven accessible maps</li>
+            <li>Mobile app with family access</li>
+            <li>Share anonymized data to help others</li>
+            <li>Standard email support</li>
+          </ul>
+          
+          <a href="#contact" class="pricing-cta green">Choose Community Builder</a>
+        </article>
+
+        <!-- Premium Privacy Plan -->
+        <article class="pricing-card privacy-focused">
+          <span class="pricing-badge privacy">Privacy-Focused</span>
+          <h3 class="pricing-name">Premium Privacy</h3>
+          <div class="pricing-price">
+            <span class="currency">HKD</span> 1,299<span class="period">/month</span>
+          </div>
+          <p class="pricing-description">All features with 100% private data - your information stays with you</p>
+          
+          <ul class="pricing-features">
+            <li>All Community Builder features</li>
+            <li>Zero data sharing - complete privacy</li>
+            <li>Advanced customization options</li>
+            <li>Priority 24/7 chat support</li>
+            <li>Family plan (up to 3 users)</li>
+            <li>Private route history and preferences</li>
+            <li>Enhanced privacy controls</li>
+          </ul>
+          
+          <a href="#contact" class="pricing-cta blue">Choose Premium Privacy</a>
+        </article>
+      </div>
+
+      <p class="pricing-trial">✨ First month free trial available for both plans</p>
+
+      <!-- Comparison Table -->
+      <div style="max-width: 900px; margin: var(--space-32) auto;">
+        <h3 style="font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); color: var(--nera-primary); text-align: center; margin-bottom: var(--space-24);">Detailed Plan Comparison</h3>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th style="background: var(--nera-secondary);">Community Builder<br><span style="font-size: var(--font-size-base); font-weight: var(--font-weight-normal); opacity: 0.9;">HKD 599/month</span></th>
+              <th>Premium Privacy<br><span style="font-size: var(--font-size-base); font-weight: var(--font-weight-normal); opacity: 0.9;">HKD 1,299/month</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>AI-powered navigation</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+            </tr>
+            <tr>
+              <td>Real-time alerts &amp; voice guidance</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+            </tr>
+            <tr>
+              <td>Access to community maps</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+            </tr>
+            <tr>
+              <td>Mobile app with family access</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+            </tr>
+            <tr>
+              <td>Zero data sharing</td>
+              <td class="cross">—</td>
+              <td class="check">✓</td>
+            </tr>
+            <tr>
+              <td>Advanced customization</td>
+              <td class="cross">—</td>
+              <td class="check">✓</td>
+            </tr>
+            <tr>
+              <td>Priority 24/7 support</td>
+              <td class="cross">—</td>
+              <td class="check">✓</td>
+            </tr>
+            <tr>
+              <td>Family plan (up to 3 users)</td>
+              <td class="cross">—</td>
+              <td class="check">✓</td>
+            </tr>
+            <tr>
+              <td>Private route history</td>
+              <td class="cross">—</td>
+              <td class="check">✓</td>
+            </tr>
+            <tr>
+              <td>Support type</td>
+              <td>Email support</td>
+              <td>24/7 Chat support</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- Pricing Comparison Image -->
+      <div style="max-width: 800px; margin: var(--space-32) auto 0; text-align: center;">
+        <h3 style="font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); color: var(--nera-primary); margin-bottom: var(--space-20);">Visual Plan Comparison</h3>
+        <div style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); background: var(--color-white);">
+          <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/83bb30f8-528b-4149-8be6-6d727cecd9e8.png" 
+               alt="Detailed comparison chart showing Community Builder vs Premium Privacy plan features" 
+               style="width: 100%; height: auto; display: block;">
+        </div>
+      </div>
+    </section>
+
+    <!-- Grant Program Section -->
+    <section id="grant" class="section grant-section fade-in" aria-labelledby="grant-title">
+      <h2 id="grant-title" class="section-title">N.ERA Accessibility Grant Program</h2>
+      
+      <div class="grant-content">
+        <h3 class="grant-subtitle">Bringing N.ERA to Those Who Need It Most</h3>
+        <p class="grant-description">
+          We believe accessibility is a fundamental right. Our grant program provides free or heavily subsidized N.ERA access to individuals with disabilities who cannot afford subscription fees.
+        </p>
+        
+        <div class="grant-eligibility">
+          <h4>Eligibility Criteria</h4>
+          <ul>
+            <li>Individuals with visual impairment or disabilities</li>
+            <li>Low-income or financially disadvantaged background</li>
+            <li>Recommendation from social service organization (optional)</li>
+            <li>Commitment to community feedback</li>
+          </ul>
+        </div>
+
+        <div class="grant-stats">
+          <div class="grant-stat">
+            <span class="grant-stat-number">50+</span>
+            <span class="grant-stat-label">Grants Approved</span>
+          </div>
+          <div class="grant-stat">
+            <span class="grant-stat-number">500+</span>
+            <span class="grant-stat-label">Hours of Assistance</span>
+          </div>
+          <div class="grant-stat">
+            <span class="grant-stat-number">100+</span>
+            <span class="grant-stat-label">Routes Mapped</span>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: var(--space-32);">
+          <p style="font-size: var(--font-size-lg); margin-bottom: var(--space-16); color: var(--nera-text);">
+            <strong>Application Process:</strong> Simple online application or contact our team
+          </p>
+          <a href="mailto:s25217850@mail.sfu.edu.hk" class="btn btn-primary" style="display: inline-flex;">Apply for Grant</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Donation Section -->
+    <section id="donation" class="section donation-section fade-in" aria-labelledby="donation-title">
+      <h2 id="donation-title" class="section-title">Support Our Mission - Help Us Create Accessible Hong Kong</h2>
+      
+      <div class="donation-content">
+        <p class="donation-description">
+          Your donation directly helps us provide N.ERA to underprivileged individuals with disabilities. Every contribution brings us closer to a more inclusive Hong Kong.
+        </p>
+
+        <!-- Donation Impact Image -->
+        <div style="max-width: 700px; margin: 0 auto var(--space-32); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg);">
+          <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/42f29a1c-5b0a-4a49-9904-3b2b60f4307d.png" 
+               alt="Visual representation of donation impact showing how contributions help individuals with disabilities" 
+               style="width: 100%; height: auto; display: block;">
+        </div>
+
+        <div class="donation-counter">
+          <div class="donation-counter-stats">
+            <div class="donation-counter-item">
+              <span class="donation-counter-number" id="total-donated">HKD 125,000</span>
+              <span class="donation-counter-label">Total Donated</span>
+            </div>
+            <div class="donation-counter-item">
+              <span class="donation-counter-number" id="lives-impacted">42</span>
+              <span class="donation-counter-label">Lives Impacted</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="donation-tiers">
+          <div class="donation-tier" tabindex="0">
+            <div class="donation-amount">HKD 100</div>
+            <div class="donation-impact">Support 1 week of device access</div>
+            <div class="donation-description-text">Basic supporter</div>
+          </div>
+          
+          <div class="donation-tier" tabindex="0">
+            <div class="donation-amount">HKD 250</div>
+            <div class="donation-impact">Enable 1 month of service</div>
+            <div class="donation-description-text">Community patron</div>
+          </div>
+          
+          <div class="donation-tier" tabindex="0">
+            <div class="donation-amount">HKD 500</div>
+            <div class="donation-impact">Sponsor a full year</div>
+            <div class="donation-description-text">Impact maker</div>
+          </div>
+          
+          <div class="donation-tier" tabindex="0">
+            <div class="donation-amount">HKD 1,000+</div>
+            <div class="donation-impact">Become a Founding Partner</div>
+            <div class="donation-description-text">Recognition + annual impact report</div>
+          </div>
+        </div>
+
+        <div class="donation-cta-container">
+          <a href="#contact" class="btn btn-primary" style="display: inline-flex; font-size: var(--font-size-2xl); padding: 18px 36px;">❤️ Make a Donation</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact Metrics Section -->
+    <section id="impact" class="section metrics-section fade-in" aria-labelledby="impact-title">
+      <h2 id="impact-title" class="section-title">Our Impact</h2>
+      <p class="section-description">
+        Measuring success through meaningful change
+      </p>
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <span class="metric-number" data-target="199600" aria-live="polite">0</span>
+          <div class="metric-label">VI Population Served</div>
+          <div class="metric-description">targeting underserved communities</div>
+        </div>
+        <div class="metric-card">
+          <span class="metric-number" data-target="12" aria-live="polite">0</span>
+          <div class="metric-label">WCAG Compliance Issues</div>
+          <div class="metric-description">resolved in development</div>
+        </div>
+        <div class="metric-card">
+          <span class="metric-number" data-target="60" aria-live="polite">0</span>
+          <div class="metric-label">Development Cost Reduction %</div>
+          <div class="metric-description">through AI-assisted development</div>
+        </div>
+        <div class="metric-card">
+          <span class="metric-number" data-target="4" aria-live="polite">0</span>
+          <div class="metric-label">Design Iterations</div>
+          <div class="metric-description">for optimal accessibility</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="section fade-in" aria-labelledby="team-title">
+      <h2 id="team-title" class="section-title">Meet Our Team</h2>
+      <p class="section-description">
+        Collaborative problem-solving culture with expertise in AI-driven systems, OpenCV, TensorFlow, and Code for Good participation
+      </p>
+      <div class="team-grid">
+        <article class="team-card">
+          <h3 class="team-member-name">Ho Tsz Yu (Otto)</h3>
+          <div class="team-member-role">Founder &amp; Marketing Lead</div>
+          <p class="team-member-bio" style="margin-bottom: var(--space-12);">Saint Francis University, Year 3<br>Marketing and Event Management</p>
+          <p style="font-size: var(--font-size-base); color: var(--nera-text); margin-bottom: var(--space-12); line-height: 1.6;">
+            <strong>Contribution:</strong> Otto drives N.ERA's market entry strategy, building crucial partnerships with Hong Kong NGOs, health organizations, and government agencies. He identifies market opportunities, manages stakeholder relationships, and ensures our accessibility grant program reaches underprivileged communities effectively.
+          </p>
+          <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-bottom: var(--space-12);">
+            <strong>Skills:</strong> Marketing strategy, Partnership development, Community engagement, Market research
+          </p>
+          <p class="team-member-email"><a href="mailto:s25217850@mail.sfu.edu.hk">s25217850@mail.sfu.edu.hk</a></p>
+        </article>
+        <article class="team-card">
+          <h3 class="team-member-name">Tse Chi Wing (Oscar)</h3>
+          <div class="team-member-role">Lead Developer &amp; AI Systems Architect</div>
+          <p class="team-member-bio" style="margin-bottom: var(--space-12);">City University of Hong Kong, Year 4<br>Information Management</p>
+          <p style="font-size: var(--font-size-base); color: var(--nera-text); margin-bottom: var(--space-12); line-height: 1.6;">
+            <strong>Contribution:</strong> Oscar architected N.ERA's core AI engine, designing and optimizing the 360° computer vision system that processes real-time environmental data. His deep learning expertise ensures our obstacle detection and route safety algorithms work reliably for visually impaired users.
+          </p>
+          <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-bottom: var(--space-12);">
+            <strong>Skills:</strong> AI/ML development, Computer vision (OpenCV, TensorFlow), System architecture, Real-time processing
+          </p>
+          <p class="team-member-email"><a href="mailto:chiwtse3-c@my.cityu.edu.hk">chiwtse3-c@my.cityu.edu.hk</a></p>
+        </article>
+        <article class="team-card">
+          <h3 class="team-member-name">Wan Chun Hin (Issac)</h3>
+          <div class="team-member-role">Backend Engineer &amp; Database Systems</div>
+          <p class="team-member-bio" style="margin-bottom: var(--space-12);">City University of Hong Kong, Year 4<br>Information Management</p>
+          <p style="font-size: var(--font-size-base); color: var(--nera-text); margin-bottom: var(--space-12); line-height: 1.6;">
+            <strong>Contribution:</strong> Issac builds the data infrastructure powering N.ERA's accessible map creation. He ensures efficient real-time processing of sensor data, secure anonymization of user information, and scalable aggregation of crowd-sourced route safety data.
+          </p>
+          <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-bottom: var(--space-12);">
+            <strong>Skills:</strong> Backend development, Database systems, Data security, Scalable architecture
+          </p>
+          <p class="team-member-email"><a href="mailto:chuwan7-c@my.cityu.edu.hk">chuwan7-c@my.cityu.edu.hk</a></p>
+        </article>
+        <article class="team-card">
+          <h3 class="team-member-name">Ng To Nam (Dennis)</h3>
+          <div class="team-member-role">Design &amp; Immersive Technology Lead</div>
+          <p class="team-member-bio" style="margin-bottom: var(--space-12);">Hong Kong Shue Yan University, Year 3<br>Media Design and Immersive Technology</p>
+          <p style="font-size: var(--font-size-base); color: var(--nera-text); margin-bottom: var(--space-12); line-height: 1.6;">
+            <strong>Contribution:</strong> Dennis leads product accessibility design, ensuring the wearable interface is intuitive for elderly users and visually impaired individuals. He develops the voice guidance UX, tactile controls, and elderly-friendly app interface that makes N.ERA actually usable.
+          </p>
+          <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-bottom: var(--space-12);">
+            <strong>Skills:</strong> UX/Accessibility design, Immersive technology, Interface design, User experience
+          </p>
+          <p class="team-member-email"><a href="mailto:235a55@hksyu.edu.hk">235a55@hksyu.edu.hk</a></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Call-to-Action Sections -->
+    <section class="section fade-in" aria-labelledby="cta-journey-title" style="background: var(--nera-light-bg);">
+      <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+        <h2 id="cta-journey-title" class="section-title">Start Your Journey to Accessibility</h2>
+        <p class="section-description">
+          Device + monthly subscription option for accessible mobility
+        </p>
+        <a href="#hardware" class="btn btn-primary" style="display: inline-flex; font-size: var(--font-size-xl); padding: 18px 36px;">View Plans</a>
+      </div>
+    </section>
+
+    <section class="section fade-in" aria-labelledby="cta-difference-title" style="background: var(--color-white);">
+      <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+        <h2 id="cta-difference-title" class="section-title">Help Us Make a Difference</h2>
+        <p class="section-description">
+          Support underprivileged individuals with disabilities and contribute to building accessible Hong Kong
+        </p>
+        <a href="#donation" class="btn btn-primary" style="display: inline-flex; font-size: var(--font-size-xl); padding: 18px 36px;">Make a Donation</a>
+      </div>
+    </section>
+
+    <section id="contact" class="section cta-section fade-in" aria-labelledby="cta-title">
+      <h2 id="cta-title" class="section-title">Partner With Us</h2>
+      <p class="section-description">
+        NGOs, health organizations, and government agencies - let's build accessible Hong Kong together
+      </p>
+      <div style="text-align: center; margin-bottom: var(--space-32);">
+        <a href="mailto:s25217850@mail.sfu.edu.hk" class="btn btn-primary" style="display: inline-flex; font-size: var(--font-size-xl); padding: 18px 36px;" target="_blank">Contact Us</a>
+        <p style="margin-top: var(--space-16); font-size: var(--font-size-lg); color: var(--color-text-secondary);">
+          Email: <a href="mailto:s25217850@mail.sfu.edu.hk" style="color: var(--nera-secondary); font-weight: var(--font-weight-semibold);">s25217850@mail.sfu.edu.hk</a>
+        </p>
+      </div>
+      <form class="cta-form" id="contact-form" aria-label="Contact form">
+        <div class="form-group">
+          <label for="email" class="form-label">Email Address</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            class="form-input" 
+            placeholder="your.email@example.com"
+            required
+            aria-required="true"
+            aria-describedby="email-error"
+          >
+          <div id="email-error" class="error-message" role="alert" aria-live="polite"></div>
+        </div>
+        <button type="submit" class="btn btn-primary" aria-label="Submit contact form">Send Partnership Inquiry</button>
+        <div class="success-message" role="status" aria-live="polite" id="success-message">
+          Thank you for your interest! We'll be in touch soon.
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>N.ERA</h3>
+        <p>Empowering Access Through Intelligent Technology</p>
+        <p>Founded 2025</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="#problem" class="footer-link">Challenge</a></li>
+          <li><a href="#solution" class="footer-link">Solution</a></li>
+          <li><a href="#features" class="footer-link">Features</a></li>
+          <li><a href="#hardware" class="footer-link">Device</a></li>
+          <li><a href="#pricing" class="footer-link">Pricing</a></li>
+          <li><a href="#grant" class="footer-link">Grant Program</a></li>
+          <li><a href="#donation" class="footer-link">Donate</a></li>
+          <li><a href="#team" class="footer-link">Team</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Accessibility</h3>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link" target="_blank" rel="noopener noreferrer">WCAG 2.1 AA Compliant</a></li>
+          <li><a href="#" class="footer-link">Accessibility Statement</a></li>
+          <li><a href="#" class="footer-link">Report Issue</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Connect</h3>
+        <ul class="footer-links">
+          <li><a href="mailto:s25217850@mail.sfu.edu.hk" class="footer-link">s25217850@mail.sfu.edu.hk</a></li>
+          <li><a href="#contact" class="footer-link">Partnership Inquiries</a></li>
+          <li><a href="#grant" class="footer-link">NGO Collaborations</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 N.ERA. All rights reserved. | Committed to digital accessibility for all.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Use Case Gallery Carousel
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.gallery-slide');
+    const indicators = document.querySelectorAll('.indicator');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+
+    function showSlide(index) {
+      slides.forEach(slide => {
+        slide.classList.remove('active');
+      });
+      indicators.forEach(indicator => {
+        indicator.classList.remove('active');
+        indicator.setAttribute('aria-selected', 'false');
+      });
+
+      currentSlide = (index + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+      indicators[currentSlide].classList.add('active');
+      indicators[currentSlide].setAttribute('aria-selected', 'true');
+    }
+
+    function nextSlide() {
+      showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentSlide - 1);
+    }
+
+    if (prevBtn && nextBtn) {
+      prevBtn.addEventListener('click', prevSlide);
+      nextBtn.addEventListener('click', nextSlide);
+
+      // Indicator click handlers
+      indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+          showSlide(index);
+        });
+      });
+
+      // Auto-advance carousel every 5 seconds
+      let autoAdvance = setInterval(nextSlide, 5000);
+
+      // Pause auto-advance on hover
+      const galleryContainer = document.querySelector('.gallery-container');
+      if (galleryContainer) {
+        galleryContainer.addEventListener('mouseenter', () => {
+          clearInterval(autoAdvance);
+        });
+
+        galleryContainer.addEventListener('mouseleave', () => {
+          autoAdvance = setInterval(nextSlide, 5000);
+        });
+      }
+
+      // Keyboard navigation for gallery
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+          prevSlide();
+        } else if (e.key === 'ArrowRight') {
+          nextSlide();
+        }
+      });
+    }
+
+    // Mobile menu toggle
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    mobileMenuToggle.addEventListener('click', () => {
+      const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+      mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+      navMenu.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Feature card expand/collapse
+    document.querySelectorAll('.feature-expand').forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const details = button.nextElementSibling;
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        
+        button.setAttribute('aria-expanded', !isExpanded);
+        details.classList.toggle('expanded');
+        button.textContent = isExpanded ? 'Learn more' : 'Show less';
+      });
+    });
+
+    // Animated counters with Intersection Observer
+    const animateCounter = (element, target, duration = 2000) => {
+      const start = 0;
+      const increment = target / (duration / 16);
+      let current = start;
+
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          element.textContent = target.toLocaleString();
+          clearInterval(timer);
+        } else {
+          element.textContent = Math.floor(current).toLocaleString();
+        }
+      }, 16);
+    };
+
+    const metricsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const numbers = entry.target.querySelectorAll('.metric-number');
+          numbers.forEach(number => {
+            const target = parseInt(number.getAttribute('data-target'));
+            animateCounter(number, target);
+          });
+          metricsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const metricsSection = document.querySelector('.metrics-section');
+    if (metricsSection) {
+      metricsObserver.observe(metricsSection);
+    }
+
+    // Fade-in animation on scroll
+    const fadeInObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          fadeInObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(element => {
+      fadeInObserver.observe(element);
+    });
+
+    // Form validation and submission
+    const contactForm = document.getElementById('contact-form');
+    const emailInput = document.getElementById('email');
+    const emailError = document.getElementById('email-error');
+    const successMessage = document.getElementById('success-message');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Reset messages
+      emailError.textContent = '';
+      emailError.classList.remove('visible');
+      successMessage.classList.remove('visible');
+
+      // Validate email
+      const emailValue = emailInput.value.trim();
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!emailValue) {
+        emailError.textContent = 'Please enter your email address.';
+        emailError.classList.add('visible');
+        emailInput.focus();
+        return;
+      }
+
+      if (!emailPattern.test(emailValue)) {
+        emailError.textContent = 'Please enter a valid email address.';
+        emailError.classList.add('visible');
+        emailInput.focus();
+        return;
+      }
+
+      // Success
+      successMessage.classList.add('visible');
+      contactForm.reset();
+      
+      // Announce success to screen readers
+      successMessage.setAttribute('aria-live', 'assertive');
+      setTimeout(() => {
+        successMessage.setAttribute('aria-live', 'polite');
+      }, 1000);
+    });
+
+    // Keyboard navigation for feature cards
+    document.querySelectorAll('.feature-card').forEach(card => {
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const button = card.querySelector('.feature-expand');
+          button.click();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
